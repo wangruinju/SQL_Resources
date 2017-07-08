@@ -38,17 +38,16 @@ order by year;
 Find the titles of all movies that have no ratings. 
 
 ```sql
-select title from Movie
-left outer join Rating on Movie.mID = Rating.mID
+select title from movie
+left outer join Rating using (mID)
 where stars is null;
 ```
 
 Some reviewers didn't provide a date with their rating. Find the names of all reviewers who have ratings with a NULL value for the date. 
 
 ```sql
-select name from Rating
-left outer join Reviewer
-on Reviewer.rID = Rating.rID
+select name from reviewer
+join Rating using (rID)
 where ratingDate is null;
 ```
 
@@ -64,29 +63,21 @@ order by name, title, stars;
 For all cases where the same reviewer rated the same movie twice and gave it a higher rating the second time, return the reviewer's name and the title of the movie. 
 
 ```sql
-select name, title from Rating r1
-join Rating r2 on(r1.rID=r2.rID and r1.mID=r2.mID)
-join Movie on(Movie.mID = r1.mID)
-join Reviewer on(Reviewer.rID = r1.rID)
-where r1.stars < r2.stars
-and r1.ratingDate < r2.ratingDate
-and r1.rID in ( select rID from Rating
-                group by rID, mID
-                having count(*) = 2);
+select name, title from rating r1
+join rating r2 on (r1.mID = r2.mID and r1.rID = r2.rID)
+join reviewer using (rID)
+join movie on (Movie.mID = r1.mID)
+where r1.stars > r2.stars and r1.ratingDate > r2.ratingDate;
 ```
 
 For each movie that has at least one rating, find the highest number of stars that movie received. Return the movie title and number of stars. Sort by movie title. 
 
 ```sql
-select title, max(stars)
-from Rating
-join Movie on(Rating.mID = Movie.mID)
-join Reviewer on(Rating.rID = Reviewer.rID)
-where Rating.mID in 
-(select mID from Rating group by mID
-      having count(stars) >= 1)
-group by title
-order by title
+select title, max(stars) from rating
+join movie using (mID)
+join reviewer using (rID)
+group by mID
+order by title;
 ```
 
 For each movie, return the title and the 'rating spread', that is, the difference between highest and lowest ratings given to that movie. Sort by rating spread from highest to lowest, then by movie title. 
