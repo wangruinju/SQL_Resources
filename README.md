@@ -17,3 +17,11 @@
 * Standard SQL Functions (100% completed, 211/211)
 
 * Window Functions (100% completed, 218/218)
+
+## Good resources for look-up
+
+https://www.w3schools.com/SQl/default.asp
+
+http://www.sqlite.org/cli.html
+
+http://codex.cs.yale.edu/avi/db-book/db6/slide-dir/index.html
