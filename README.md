@@ -8,12 +8,12 @@
 
 ## [Vertabelo Academy SQL module](https://academy.vertabelo.com/)
 
-### SQL Basics (100% completed, 129/129)
+* SQL Basics (100% completed, 129/129)
 
-### Operating on Data in SQL (100% completed, 19/19)
+* Operating on Data in SQL (100% completed, 19/19)
 
-### Creating Tables in SQL (not purchased 8% completed, 15/177)
+* Creating Tables in SQL (not purchased 8% completed, 15/177)
 
-### Standard SQL Functions (100% completed, 211/211)
+* Standard SQL Functions (100% completed, 211/211)
 
-### Window Functions (100% completed, 218/218)
+* Window Functions (100% completed, 218/218)
